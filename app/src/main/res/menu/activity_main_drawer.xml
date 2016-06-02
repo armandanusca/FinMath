@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/simple_interest"
+            android:icon="@drawable/si"
+            android:title="Simple Installment" />
+        <item
+            android:id="@+id/comp_interest"
+            android:icon="@drawable/ci"
+            android:title="Compound interest" />
+        <item
+            android:id="@+id/VAT"
+            android:icon="@drawable/vat"
+            android:title="VAT" />
+        <item
+            android:id="@+id/capital"
+            android:icon="@drawable/cp"
+            android:title="Capital"/>
+    </group>
+
+</menu>
