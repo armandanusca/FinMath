@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "Stef Moisanu","moisanu.stef@gmail.com", null));
+                        "Stef Moisanu","SMoisanu@gmail.com", null));
                 intent.putExtra(Intent.EXTRA_SUBJECT, subject);
                 startActivity(Intent.createChooser(intent, "Choose an Email client :"));
             }
