@@ -27,7 +27,7 @@
         android:ems="10"
         android:layout_marginTop="170dp"
         android:id="@+id/init_sum"
-        android:hint="Initial Sum"
+        android:hint="Annual Sum"
         android:layout_centerHorizontal="true" />
 
     <EditText
