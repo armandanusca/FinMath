@@ -26,7 +26,7 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:layout_marginTop="170dp"
-        android:id="@+id/init_sum"
+        android:id="@+id/annual_sum"
         android:hint="Annual Sum"
         android:layout_centerHorizontal="true" />
 
@@ -46,8 +46,19 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:layout_marginTop="290dp"
+        android:id="@+id/years"
+        android:hint="Years"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_marginTop="350dp"
         android:id="@+id/fin_sum"
         android:hint="Final Sum"
         android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

@@ -19,6 +19,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import static java.lang.Math.getExponent;
+
 /**
  * Created by Aaron on 02/06/16.
  */
@@ -27,20 +29,25 @@ public class Capital extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     private GoogleApiClient client;
 
+    public float pw(final float base, final float power) {
+        float result = 1;
+        for (int i = 0; i < power; i++) {
+            result *= base;
+        }
+        return result;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capital_drawer);
 
-        final EditText init_sum;
-        final EditText percent;
-        final EditText fin_sum;
-
+        final EditText annual_sum, percent, years, finsum;
         final Button definition;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer , R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         assert drawer != null;
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -51,71 +58,82 @@ public class Capital extends AppCompatActivity
 
         FloatingActionButton calculate = (FloatingActionButton) findViewById(R.id.calculate);
 
-        init_sum = (EditText) findViewById(R.id.init_sum);
-        percent=(EditText) findViewById(R.id.percent);
-        fin_sum=(EditText) findViewById(R.id.fin_sum);
+        annual_sum = (EditText) findViewById(R.id.annual_sum);
+        percent = (EditText) findViewById(R.id.percent);
+        years = (EditText) findViewById(R.id.years);
+        finsum = (EditText) findViewById(R.id.fin_sum);
 
         assert calculate != null;
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int cnt = 0;
-                int poz = 0;
-                if(init_sum.getText().toString().isEmpty()) {
+                int cnt = 0, poz = 0;
+                if (annual_sum.getText().toString().isEmpty()) {
                     cnt = cnt + 1;
                     poz = 1;
                 }
-                if(percent.getText().toString().isEmpty()) {
+                if (percent.getText().toString().isEmpty()) {
                     cnt = cnt + 1;
                     poz = 2;
                 }
-                if (fin_sum.getText().toString().isEmpty()) {
+                if (years.getText().toString().isEmpty()) {
                     cnt = cnt + 1;
                     poz = 3;
                 }
-                if(cnt>1){
+                if (finsum.getText().toString().isEmpty()) {
+                    cnt = cnt + 1;
+                    poz = 4;
+                }
+                if (cnt > 1)
                     Snackbar.make(view, "Too few arguments", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
-                else if(cnt==0){
+                if (cnt == 0)
                     Snackbar.make(view, "Nothing to be calculated", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
-                else {
+                if (cnt == 1) {
+                    if (poz == 1) {
+                        float perc = Float.parseFloat(percent.getText().toString());
+                        float year = Float.parseFloat(years.getText().toString());
+                        float sumfin = Float.parseFloat(finsum.getText().toString());
+                        float an_sum = sumfin / ((100 / perc) * (pw((1 + perc / 100), year) - 1));
+                        annual_sum.setText(Float.toString(an_sum));
+                    }
+                    if (poz == 2) {
+                       //csf, n-ai csf...
+                    }
                     if (poz == 3) {
-                        float initsum = Float.parseFloat(init_sum.getText().toString());
+                        float an_sum = Float.parseFloat(annual_sum.getText().toString());
                         float perc = Float.parseFloat(percent.getText().toString());
-                        float sumfin = initsum * (1 + (perc / 100));
-                        fin_sum.setText(Float.toString(sumfin));
-                    } else if (poz == 2) {
-                        float initsum = Float.parseFloat(init_sum.getText().toString());
-                        float sumfin = Float.parseFloat(fin_sum.getText().toString());
-                        float perc = (sumfin / initsum - 1) * 100;
-                        percent.setText(Float.toString(perc));
-                    } else if (poz == 1) {
+                        float sumfin = Float.parseFloat(finsum.getText().toString());
+                        float year = getExponent(sumfin * perc / (an_sum * 100) + 1) / getExponent(1 + perc / 100);
+                        years.setText(Float.toString(year));
+                    }
+                    if (poz == 4) {
+                        float an_sum = Float.parseFloat(annual_sum.getText().toString());
                         float perc = Float.parseFloat(percent.getText().toString());
-                        float sumfin = Float.parseFloat(fin_sum.getText().toString());
-                        float initsum = sumfin / (1 + (perc / 100));
-                        init_sum.setText(Float.toString(initsum));
+                        float year = Float.parseFloat(years.getText().toString());
+                        float sumfin = an_sum * (100 / perc) * (pw((1 + perc / 100), year) - 1);
+                        finsum.setText(Float.toString(sumfin));
                     }
                 }
             }
         });
+
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
         definition = (Button) findViewById(R.id.def_cap);
 
-        definition.setOnClickListener(new View.OnClickListener()
-        {
+        definition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),definitionCapital.class);
+                Intent intent = new Intent(getApplicationContext(), definitionCapital.class);
                 startActivity(intent);
             }
         });
-
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    @Override
+@Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
