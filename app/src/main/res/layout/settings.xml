@@ -48,4 +48,21 @@
         android:layout_marginLeft="155dp"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matei Cozac"
+        android:id="@+id/texs"
+        android:layout_marginTop="195dp"
+        android:layout_marginLeft="287dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imag"
+        android:src="@mipmap/matei"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="275dp"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
