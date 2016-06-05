@@ -90,7 +90,7 @@ public class Capital extends AppCompatActivity
                 if (cnt == 0)
                     Snackbar.make(view, "Nothing to be calculated", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                if (cnt == 1) {
+                if (cnt == 1)
                     if (poz == 1) {
                         float perc = Float.parseFloat(percent.getText().toString());
                         float year = Float.parseFloat(years.getText().toString());
@@ -98,24 +98,24 @@ public class Capital extends AppCompatActivity
                         float an_sum = sumfin / ((100 / perc) * (pw((1 + perc / 100), year) - 1));
                         annual_sum.setText(Float.toString(an_sum));
                     }
-                    if (poz == 2) {
-                       //csf, n-ai csf...
+                    else if (poz == 2) {
+                        Snackbar.make(view, "Can't be computed", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
-                    if (poz == 3) {
+                    else if (poz == 3) {
                         float an_sum = Float.parseFloat(annual_sum.getText().toString());
                         float perc = Float.parseFloat(percent.getText().toString());
                         float sumfin = Float.parseFloat(finsum.getText().toString());
                         float year = getExponent(sumfin * perc / (an_sum * 100) + 1) / getExponent(1 + perc / 100);
                         years.setText(Float.toString(year));
                     }
-                    if (poz == 4) {
+                    else if (poz == 4) {
                         float an_sum = Float.parseFloat(annual_sum.getText().toString());
                         float perc = Float.parseFloat(percent.getText().toString());
                         float year = Float.parseFloat(years.getText().toString());
                         float sumfin = an_sum * (100 / perc) * (pw((1 + perc / 100), year) - 1);
                         finsum.setText(Float.toString(sumfin));
                     }
-                }
             }
         });
 
