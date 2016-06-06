@@ -111,7 +111,20 @@ public class ComplexInstallment extends AppCompatActivity
                         float initsum = Float.parseFloat(init_sum.getText().toString());
                         float perc = Float.parseFloat(percent.getText().toString());
                         float sumfin = Float.parseFloat(fin_sum.getText().toString());
-                        float year = getExponent(sumfin / initsum) / getExponent(1 + perc / 100);
+                        float year = 0, p = sumfin / initsum, q = 1 + perc / 100;
+                        if (p != q) {
+                            while (p > q) {
+                                p = p / q;
+                                year = year + 1;
+                            }
+                            if (p != q)
+                            year = year - 1;
+
+                            Snackbar.make(view, "Those are complete years, without the extra months", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        }
+
                         years.setText(Float.toString(year));
                     } else if (poz == 2) {
                         float initsum = Float.parseFloat(init_sum.getText().toString());

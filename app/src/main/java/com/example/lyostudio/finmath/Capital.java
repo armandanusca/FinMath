@@ -106,7 +106,17 @@ public class Capital extends AppCompatActivity
                         float an_sum = Float.parseFloat(annual_sum.getText().toString());
                         float perc = Float.parseFloat(percent.getText().toString());
                         float sumfin = Float.parseFloat(finsum.getText().toString());
-                        float year = getExponent(sumfin * perc / (an_sum * 100) + 1) / getExponent(1 + perc / 100);
+                        float year = 0, p = sumfin * perc / (an_sum * 100) + 1, q = 1 + perc / 100;
+                        if (p != q) {
+                            while (p > q) {
+                                p = p / q;
+                                year = year + 1;
+                            }
+                            if (p != q)
+                            Snackbar.make(view, "Those are complete years, without the extra months", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        }
                         years.setText(Float.toString(year));
                     }
                     else if (poz == 4) {
