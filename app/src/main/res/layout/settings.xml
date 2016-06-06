@@ -20,7 +20,7 @@
         android:text="Armand Anusca"
         android:id="@+id/text"
         android:layout_marginTop="195dp"
-        android:layout_marginLeft="24dp" />
+        android:layout_marginLeft="27dp" />
 
     <ImageView
         android:layout_width="100dp"
@@ -28,7 +28,7 @@
         android:id="@+id/imageView"
         android:src="@mipmap/armand"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="25dp"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -37,7 +37,7 @@
         android:text="Stefan Moisanu"
         android:id="@+id/texts"
         android:layout_marginTop="195dp"
-        android:layout_marginLeft="142dp" />
+        android:layout_marginLeft="157dp" />
 
     <ImageView
         android:layout_width="100dp"
@@ -45,7 +45,7 @@
         android:id="@+id/image"
         android:src="@mipmap/stef"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="140dp"
+        android:layout_marginLeft="155dp"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:text="Matei Cozac"
         android:id="@+id/texs"
         android:layout_marginTop="195dp"
-        android:layout_marginLeft="270dp" />
+        android:layout_marginLeft="297dp" />
 
     <ImageView
         android:layout_width="100dp"
@@ -62,7 +62,7 @@
         android:id="@+id/imag"
         android:src="@mipmap/matei"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="260dp"
+        android:layout_marginLeft="285dp"
         android:layout_alignParentStart="true" />
 
     <TextView
