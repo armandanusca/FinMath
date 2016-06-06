@@ -144,7 +144,8 @@ public class VAT extends AppCompatActivity
             Intent vat = new Intent(getApplicationContext(),VAT.class);
             startActivity(vat);
         } else if (id == R.id.capital){
-
+            Intent cap = new Intent(getApplicationContext(), Capital.class);
+            startActivity(cap);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
