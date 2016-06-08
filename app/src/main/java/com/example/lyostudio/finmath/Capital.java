@@ -19,7 +19,6 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import static java.lang.Math.getExponent;
 
 /**
  * Created by Aaron on 02/06/16.
